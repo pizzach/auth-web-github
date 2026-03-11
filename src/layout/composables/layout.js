@@ -24,8 +24,6 @@ export function useLayout() {
         return;
     };
 
-
-
     const toggleMenu = () => {
         if (isDesktop()) {
             if (layoutConfig.menuMode === 'static') {
@@ -57,7 +55,6 @@ export function useLayout() {
         layoutState.anchored = false;
     };
 
-    // const isDarkTheme = computed(() => layoutConfig.darkTheme);
     const isDesktop = () => window.innerWidth > 991;
 
     const hasOpenOverlay = computed(() => layoutState.overlayMenuActive);
