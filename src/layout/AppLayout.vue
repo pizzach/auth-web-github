@@ -19,7 +19,7 @@ const containerClass = computed(() => {
 </script>
 
 <template>
-    <div class="layout-wrapper" :class="containerClass">
+    <div class="layout-wrapper app-dark" :class="containerClass">
         <AppTopbar />
         <AppSidebar />
         <div class="layout-main-container">
