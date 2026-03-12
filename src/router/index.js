@@ -11,11 +11,11 @@ const router = createRouter({
             children: [
                 {
                     path: '/',
-                    name: 'dashboard',
-                    component: () => import('@/views/Dashboard.vue'),
+                    name: 'token-dashboard', // 調整 1：將 name 從 dashboard 改為 token-dashboard
+                    component: () => import('@/views/TokenDashboard.vue'), // 調整 2：指向新的 Vue 元件
                     meta: { requiresAuth: true }
                 }
-                // ... 其他需要權限的子頁面
+                // ... 未來如果有其他需要權限的子頁面可以加在這裡
             ]
         },
         {
@@ -35,7 +35,7 @@ router.beforeEach((to, from, next) => {
         next({ name: 'login' });
     } else if (to.name === 'login' && isAuthenticated) {
         // 如果已登入卻還想去登入頁，導回首頁
-        next({ name: 'dashboard' });
+        next({ name: 'token-dashboard' }); // 調整 3：這裡也要對應改成 token-dashboard
     } else {
         next();
     }

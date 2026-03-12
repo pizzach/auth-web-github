@@ -39,6 +39,15 @@ export default defineConfig({
         https: {
             cert: fs.readFileSync('C:/Certificate/localhost/auth-service/localhost.pem'),
             key: fs.readFileSync('C:/Certificate/localhost/auth-service/localhost-key.pem')
+        },
+        proxy: {
+            // 當前端發送 /proxy-auth 開頭的請求時，幫我偷偷轉發給 Java 後端
+            '/proxy-auth': {
+                target: 'https://local.ubot.css.com.tw:8081/auth',
+                changeOrigin: true,
+                secure: false, // 忽略自簽憑證錯誤
+                rewrite: (path) => path.replace(/^\/proxy-auth/, '') // 轉發時把 /proxy-auth 拔掉
+            }
         }
     },
 
