@@ -1,5 +1,5 @@
 {
-    "name": "sakai-vue",
+    "name": "auth-web",
     "version": "5.0.0",
     "scripts": {
         "dev": "vite",
@@ -9,6 +9,7 @@
     },
     "dependencies": {
         "@primeuix/themes": "^2.0.0",
+        "axios": "^1.13.6",
         "chart.js": "3.3.2",
         "primeicons": "^7.0.0",
         "primevue": "^4.5.4",
