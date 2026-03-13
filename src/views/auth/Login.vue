@@ -2,8 +2,8 @@
 import { ref, reactive, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { AuthService } from '@/service/AuthService';
-
-// PrimeVue Components
+import { useToast } from 'primevue/usetoast';
+import { globalLoading } from '@/service/GlobalState';
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
 import Password from 'primevue/password';
@@ -17,7 +17,7 @@ const loginForm = reactive({
     username: '',
     password: ''
 });
-
+const toast = useToast();
 const loading = ref(false);
 const errorMessage = ref('');
 const logoutMessage = ref(false);
@@ -30,17 +30,20 @@ onMounted(() => {
 
 const handleLogin = async () => {
     loading.value = true;
+    globalLoading.value = true; // 開啟全域 Spinner
     errorMessage.value = '';
     logoutMessage.value = false;
 
     try {
         await AuthService.login(loginForm.username, loginForm.password);
+        toast.add({ severity: 'success', summary: '登入成功', detail: '歡迎回來！', life: 3000 });
         router.push('/');
     } catch (err) {
         console.error('Login Error:', err);
         errorMessage.value = '管理員帳號或密碼錯誤，請重新確認。';
     } finally {
         loading.value = false;
+        globalLoading.value = false; // 關閉全域 Spinner
     }
 };
 </script>
