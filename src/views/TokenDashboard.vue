@@ -4,6 +4,7 @@ import { TokenService } from '@/service/TokenService';
 import { FilterMatchMode } from '@primevue/core/api';
 import { useToast } from 'primevue/usetoast';
 import { globalLoading } from '@/service/GlobalState';
+import { useRouter } from 'vue-router';
 
 // 引入 PrimeVue 組件
 import DataTable from 'primevue/datatable';
@@ -16,6 +17,7 @@ import Message from 'primevue/message';
 
 const toast = useToast();
 const tokens = ref([]);
+const router = useRouter();
 
 // DataTable 搜尋過濾設定
 const filters = ref({
@@ -103,6 +105,10 @@ const formatDate = (dateString) => {
 const isExpired = (dateString) => {
     if (!dateString) return false;
     return new Date(dateString) < new Date();
+};
+
+const goToApplyToken = () => {
+    router.push('/apply-token'); // 跳轉到新設計的頁面
 };
 </script>
 

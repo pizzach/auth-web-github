@@ -14,8 +14,13 @@ const router = createRouter({
                     name: 'token-dashboard', // 調整 1：將 name 從 dashboard 改為 token-dashboard
                     component: () => import('@/views/TokenDashboard.vue'), // 調整 2：指向新的 Vue 元件
                     meta: { requiresAuth: true }
+                },
+                {
+                    path: '/apply-token',
+                    name: 'ApplyToken',
+                    component: () => import('@/views/ApplyToken.vue'),
+                    meta: { title: '申請 JWT Token' }
                 }
-                // ... 未來如果有其他需要權限的子頁面可以加在這裡
             ]
         },
         {
